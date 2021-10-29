@@ -1,0 +1,35 @@
+{
+    "name": "ghostunicorns/module-crt-command",
+    "description": "GhostUnicorns Crt Command module",
+    "type": "magento2-module",
+    "require": {
+        "magento/framework": "*",
+        "ghostunicorns/module-crt-entity": "~1.0.0",
+        "ghostunicorns/module-crt-activity": "~1.0.0"
+    },
+    "authors": [
+        {
+            "name": "Danilo Argentiero",
+            "email": "argentiero.danilo@gmail.com",
+            "homepage": "https://www.linkedin.com/in/daniloargentiero/",
+            "role": "Software Architect"
+        },
+        {
+            "name": "Riccardo Ugolini",
+            "email": "riccardo.ugolini@gmail.com",
+            "homepage": "https://www.linkedin.com/in/riccardougolini/",
+            "role": "Software Architect"
+        }
+    ],
+    "license": [
+        "MIT"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "GhostUnicorns\\CrtCommand\\": ""
+        }
+    }
+}

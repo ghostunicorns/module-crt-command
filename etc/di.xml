@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © GhostUnicorns spa. All rights reserved.
+  ~ See LICENSE and/or COPYING.txt for license details.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Command start -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="crt_collect" xsi:type="object">
+                    GhostUnicorns\CrtCommand\Console\Command\CollectCommand
+                </item>
+                <item name="crt_refine" xsi:type="object">
+                    GhostUnicorns\CrtCommand\Console\Command\RefineCommand
+                </item>
+                <item name="crt_transfer" xsi:type="object">
+                    GhostUnicorns\CrtCommand\Console\Command\TransferCommand
+                </item>
+                <item name="crt_run" xsi:type="object">
+                    GhostUnicorns\CrtCommand\Console\Command\RunCommand
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="GhostUnicorns\CrtCommand\Console\Command\CollectCommand">
+        <arguments>
+            <argument name="name" xsi:type="string">crt:collect</argument>
+        </arguments>
+    </type>
+    <type name="GhostUnicorns\CrtCommand\Console\Command\RefineCommand">
+        <arguments>
+            <argument name="name" xsi:type="string">crt:refine</argument>
+        </arguments>
+    </type>
+    <type name="GhostUnicorns\CrtCommand\Console\Command\TransferCommand">
+        <arguments>
+            <argument name="name" xsi:type="string">crt:transfer</argument>
+        </arguments>
+    </type>
+    <type name="GhostUnicorns\CrtCommand\Console\Command\RunCommand">
+        <arguments>
+            <argument name="name" xsi:type="string">crt:run</argument>
+        </arguments>
+    </type>
+    <!-- Command end -->
+</config>
