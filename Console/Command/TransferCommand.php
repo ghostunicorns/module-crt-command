@@ -14,6 +14,7 @@ use GhostUnicorns\CrtBase\Api\CrtListInterface;
 use GhostUnicorns\CrtBase\Logger\Handler\Console;
 use GhostUnicorns\CrtBase\Model\Action\TransferAction;
 use GhostUnicorns\CrtEntity\Api\EntityRepositoryInterface;
+use GhostUnicorns\CrtActivity\Api\ActivityRepositoryInterface;
 use Magento\Framework\Serialize\SerializerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -58,6 +59,11 @@ class TransferCommand extends Command
     private $entityRepository;
 
     /**
+     * @var ActivityRepositoryInterface
+     */
+    private $activityRepository;
+
+    /**
      * @var SerializerInterface
      */
     private $serializer;
@@ -68,6 +74,7 @@ class TransferCommand extends Command
      * @param Console $consoleLogger
      * @param CrtListInterface $crtList
      * @param EntityRepositoryInterface $entityRepository
+     * @param ActivityRepositoryInterface $activityRepository
      * @param SerializerInterface $serializer
      * @param null $name
      */
@@ -77,6 +84,7 @@ class TransferCommand extends Command
         Console $consoleLogger,
         CrtListInterface $crtList,
         EntityRepositoryInterface $entityRepository,
+        ActivityRepositoryInterface $activityRepository,
         SerializerInterface $serializer,
         $name = null
     ) {
@@ -86,6 +94,7 @@ class TransferCommand extends Command
         $this->consoleLogger = $consoleLogger;
         $this->crtList = $crtList;
         $this->entityRepository = $entityRepository;
+        $this->activityRepository = $activityRepository;
         $this->serializer = $serializer;
     }
 
@@ -159,5 +168,9 @@ class TransferCommand extends Command
             $output->writeln('Result:');
             $output->writeln($this->serializer->serialize($result));
         }
+        $activity = $this->activityRepository->getById($activityId);
+        $activityExtraData = $activity->getExtra()->getData();
+        $output->writeln('Activity %1 extra data:', $activityId);
+        $output->writeln($this->serializer->serialize($activityExtraData));
     }
 }
